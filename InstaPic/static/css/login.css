@@ -1,0 +1,83 @@
+#container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+}
+
+#indexLeft {
+  width: 40vw;
+  height: 100vh;
+}
+
+#indexRight {
+  width: 60vw;
+}
+
+#login-button{
+  width: 60%;
+}
+
+.inner {
+  position: relative;
+  width: 500px;
+  left: 65%;
+  transform: translateX(-50%);
+  text-align: center;
+  vertical-align: middle;
+  top:10%;
+}
+
+.slogan {
+  font-family: 'Abhaya Libre', serif;
+  line-height: 1.0;
+}
+
+.login-slogan{
+  position: relative;
+  font-size: 36px;
+  font-family: 'Abhaya Libre', serif;
+  line-height: 1.6;
+
+}
+
+.login-wrap{
+  position: relative;
+  height: 85%;
+  width: 80%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #EFEFEF;
+}
+
+.login-form-background{
+  position: relative;
+  padding: 50px;
+  width: 65%;
+  height: 68%;
+  left: 50%;
+  top: 10%;
+  transform: translateX(-50%);
+  background-color: #FFFFFF;
+  vertical-align: middle;
+}
+
+.login-form-content{
+  position: relative;
+  top: 10%;
+}
+
+.login-section{
+  position: relative;
+  text-align: center;
+  width: 75% ;
+  height: 75%;
+  left: 45%;
+  top: 15%;
+  transform: translateX(-50%);
+}
+
+.reg {
+  position: relative;
+  top: 15%;
+  font-size: 15px;
+}

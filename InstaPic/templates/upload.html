@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <meta charset="utf-8">
+    <title>InstaPic</title>
+    <div id="navbar_top" class="navbar navbar-dark bg-dark shadow-sm">
+      <div class="container">
+        <a href="{{url_for('InstaPic.login')}}" class="navbar-brand d-flex align-items-center">
+          <strong>InstaPic</strong>
+        </a>
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+            Menu
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <li><a class="dropdown-item" href="{{url_for('InstaPic.index')}}">Index Page</a></li>
+            <li><a class="dropdown-item" href="#">Profile</a></li>
+            <li><a class="dropdown-item" href="{{url_for('InstaPic.upload')}}">Upload</a></li>
+            <li><a class="dropdown-item" href="{{url_for('InstaPic.logout')}}">Logout</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </head>
+  <body>
+    <form runat="server" method='post' action="{{url_for('InstaPic.upload')}}" enctype=multipart/form-data>
+      <div class="col-sm-4 col-md-4 py-3 mx-auto d-block">
+        <div class="card shadow-sm">
+          <img id="img" class="img-fluid" src="{{url_for('static',filename='img/System/upload.png')}}" alt="your image">
+          <div class="mb-3">
+            <input class="form-control" name="img" type="file" id="imgUpload">
+          </div>
+        </div>
+        <div class="mb-3">
+          <br>
+          <h6> Post Content </h6>
+          <textarea class="form-control" name="content" id="content" rows="3"></textarea>
+        </div>
+        <div class="d-grid gap-2 col-6 mx-auto">
+          <button type="submit" class="btn btn-primary">Submit</button>
+          <h6 class = "text-center" style="color:red;"> {{msg}} </h6>
+        </div>
+      </div>
+
+    </form>
+  </body>
+
+  <script>
+  function readURL(input) {
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+
+      reader.onload = function(e) {
+        $('#img').attr('src', e.target.result);
+      }
+
+      reader.readAsDataURL(input.files[0]); // convert to base64 string
+    }
+  }
+
+  $("#imgUpload").change(function() {
+    readURL(this);
+  });
+
+  if ($(window).width() > 992) {
+    $(window).scroll(function(){
+       if ($(this).scrollTop() > 40) {
+          $('#navbar_top').addClass("fixed-top");
+          // add padding top to show content behind navbar
+          $('body').css('padding-top', $('.navbar').outerHeight() + 'px');
+        }else{
+          $('#navbar_top').removeClass("fixed-top");
+           // remove padding top from body
+          $('body').css('padding-top', '0');
+        }
+    });
+  }
+
+  </script>
+
+</html>
