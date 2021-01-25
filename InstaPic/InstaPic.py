@@ -33,7 +33,7 @@ def login():
     else:
         return redirect(url_for('InstaPic.index'))
 
-@bp.route('/logout', methods={"GET", "POST"})
+@bp.route('/logout', methods=["GET"])
 def logout():
     if 'loggedin' in session:
         session.pop('loggedin')
@@ -64,7 +64,7 @@ def registration():
     else:
         return redirect(url_for('InstaPic.index'))
 
-@bp.route('/index', methods={"GET", "POST"})
+@bp.route('/index', methods=["GET"])
 def index():
     #check whether the user logged in or not
     if ('loggedin' in session):
