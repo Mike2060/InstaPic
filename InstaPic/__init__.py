@@ -22,7 +22,7 @@ def create_app(test_config=None):
     except OSError:
         pass
 
-    UPLOAD_FOLDER = 'static/img/UserImage'
+    UPLOAD_FOLDER = 'InstaPic/static/img/UserImage'
     app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
     # a simple page that says hello
     from . import InstaPic
