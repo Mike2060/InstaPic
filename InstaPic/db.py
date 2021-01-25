@@ -60,7 +60,7 @@ def regNewAccount(username, password):
             elif not username.isalnum():
                 return "Username must only contain characters and numbers"
             else:
-                sql = f"INSERT INTO `accounts` (`imageID`, `password`, `username`) VALUES (UNIX_TIMESTAMP(CURRENT_TIMESTAMP),'{password}', '{username}')"
+                sql = f"INSERT INTO `accounts` (`password`, `username`) VALUES ('{password}', '{username}')"
                 cursor.execute(sql)
                 db.commit()
                 # setting for the session
@@ -97,13 +97,9 @@ def login (username, password):
 
 def initDB():
     connection = pymysql.connect(
-    # host = os.environ.get('CLEARDB_DATABASE_HOST'),
-    host = 'localhost',
-    # user = os.environ.get('CLEARDB_DATABASE_USER'),
-    user = 'root',
-    # password = os.environ.get('CLEARDB_DATABASE_PASSWORD'),
-    password = 'mike2060',
-    # db = os.environ.get('CLEARDB_DATABASE_DB')
-    db = 'heroku_5a73ef4f1809026'
+    host = os.environ.get('CLEARDB_DATABASE_HOST'),
+    user = os.environ.get('CLEARDB_DATABASE_USER'),
+    password = os.environ.get('CLEARDB_DATABASE_PASSWORD'),
+    db = os.environ.get('CLEARDB_DATABASE_DB')
     )
     return connection

@@ -16,7 +16,7 @@ def login():
     # check whether the user logged in or not
     if not ('loggedin' in session):
         # check for post method and whether the all mandatory information is filled
-        if request.method == 'POST' and request.form['password']!='' and request.form['username']!='':
+        if request.method == 'POST' and 'password' in request.form and 'username' in request.form:
             username = request.form['username']
             password = request.form['password']
             success = db.login(username, password)
@@ -27,12 +27,9 @@ def login():
                 msg = success
                 return render_template('login.html',msg=msg)
         # Not post
-        elif request.method == "GET":
-            return render_template('login.html',msg='')
-        # Some information is blank
         else:
-            msg = f"Please fill all the nesscary information"
-            return render_template('login.html',msg=msg)
+            return render_template('login.html',msg='')
+
     else:
         return redirect(url_for('InstaPic.index'))
 
@@ -49,7 +46,7 @@ def registration():
     #check whether the user logged in or not
     if not ('loggedin' in session):
         # check for post method and whether the all mandatory information is filled
-        if request.method == 'POST' and request.form['password'] != '' and request.form['username']!='':
+        if request.method == 'POST' and 'password' in request.form and 'username' in request.form:
             username = request.form['username']
             password = request.form['password']
             success = db.regNewAccount(username, password)
@@ -61,12 +58,9 @@ def registration():
                 msg = success
                 return render_template('registration.html',msg = msg)
         # Not post
-        elif request.method == 'GET':
-            return render_template('registration.html',msg='')
-        # Some information is blank
         else:
-            msg = 'Please fill all the information needed'
-            return render_template('registration.html',msg = msg)
+            return render_template('registration.html',msg='')
+
     else:
         return redirect(url_for('InstaPic.index'))
 
@@ -78,6 +72,15 @@ def index():
         return render_template('index.html',images = images)
     else:
         return render_template('login.html',msg='')
+
+@bp.route('/search', methods={"GET", "POST"})
+def search():
+    # if it is get, return to index with all displayed
+    if request.method == "GET":
+        return redirect(url_for('InstaPic.index'))
+    username = request.form['searchInput']
+    images = db.loadCardList(username)
+    return render_template('index.html',images = images)
 
 @bp.route('/upload', methods={"GET", "POST"})
 def upload():
