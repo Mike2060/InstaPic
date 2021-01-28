@@ -58,7 +58,7 @@ After that, you could start to run the server by running the ```wsgi.py```
 python3 wsgi.py
 ```
 ### Heroku deployment
-#### *** Notice: for real deployment , it's better use other services to deploy the app (E.g. Azure, Amazon,...) in order to have some persistent storage to store the image folder. For this testing, due to the lack of credit card , the account is not available for me to register***
+#### *** Notice: for real deployment , it's better use other services to deploy the app (E.g. Azure, Amazon,...) in order to have some persistent storage to store the image folder. For this testing, due to the lack of credit card , the account is not available for me to register. If use heroku for the production deployment, please connect to the AWS S3 service ,which is the persistent storage system. Otherwise, the image folder would be clear with certain time period and the uploaded image would be not able to show after a cycle (heroku would redeploy it)***
 
 In this project, ```heroku``` is used to deploy the web application.
 
